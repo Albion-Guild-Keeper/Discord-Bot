@@ -24,7 +24,7 @@ pub async fn ready(ctx: Context, ready: Ready) {
         &ctx.http,
         vec![
             ping::register(),
-            balance::register(),
+            info::register(),
         ],
     )
     .await;

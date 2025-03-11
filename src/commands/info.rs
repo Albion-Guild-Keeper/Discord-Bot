@@ -14,7 +14,7 @@ pub fn register() -> CreateCommand {
 pub async fn run<'a>(_options: &'a [ResolvedOption<'a>]) -> String {
     // Esegue la chiamata API e la deserializzazione in modo asincrono.
     let result: Result<Discord, MyError> = async {
-        let response = fetch_data(FetchType::PUT, "http://127.0.0.1:8000/discord/join", None).await?;
+        let response = fetch_data(FetchType::GET, "http://127.0.0.1:8000/user/$user", None).await?;
         let data = deserialize_json(&response)?;
         Ok(data)
     }
@@ -23,11 +23,10 @@ pub async fn run<'a>(_options: &'a [ResolvedOption<'a>]) -> String {
     match result {
         Ok(discord_data) => {
             format!(
-                "ID: {:?}, Nome: {:?}, Data di adesione: {:?}, Saldo: {:?}",
-                discord_data.discord_id,
+                "ID: {:?}, Nome: {:?}, Data di adesione: {:?}",
+                discord_data.id,
                 discord_data.discord_name,
-                discord_data.joined_at,
-                discord_data.balance
+                discord_data.joined_at
             )
         },
         Err(err) => {

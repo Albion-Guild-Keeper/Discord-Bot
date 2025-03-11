@@ -1,10 +1,6 @@
 use anyhow::Context as _;
-use serenity::async_trait;
-use serenity::model::channel::Message;
-use serenity::model::gateway::Ready;
 use serenity::prelude::*;
 use shuttle_runtime::SecretStore;
-use tracing::{error, info};
 use std::env;
 
 mod commands;

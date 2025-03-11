@@ -23,7 +23,7 @@ pub async fn handle_interaction(ctx: Context, interaction: Interaction) {
 async fn handle_command(command: &CommandInteraction) -> String {
     match command.data.name.as_str() {
         "ping" => ping::run(&command.data.options()),
-        "balance" => balance::run(&command.data.options()).await,
+        "balance" => info::run(&command.data.options()).await,
         _ => "not implemented :(".to_string(),
     }
 }

@@ -5,6 +5,7 @@ use std::fmt;
 pub enum MyError {
     ReqwestError(reqwest::Error),
     SerdeError(serde_json::Error),
+    #[allow(dead_code)]
     NoData,
 }
 
