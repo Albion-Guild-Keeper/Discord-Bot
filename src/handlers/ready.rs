@@ -25,6 +25,7 @@ pub async fn ready(ctx: Context, ready: Ready) {
         vec![
             ping::register(),
             info::register(),
+            panel::register(),
         ],
     )
     .await;

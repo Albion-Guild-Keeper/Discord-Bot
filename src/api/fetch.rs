@@ -1,4 +1,4 @@
-use crate::api::errors::MyError;
+use crate::api::errors::FetchError;
 use reqwest::Client;
 
 // Allow dead code since we may add more functionality later
@@ -17,7 +17,7 @@ pub enum FetchType {
 }
 
 // Funzione per effettuare la chiamata API (asincrona)
-pub async fn fetch_data(fetch_type: FetchType, url: &str, body: Option<serde_json::Value>) -> Result<String, MyError> {
+pub async fn fetch_data(fetch_type: FetchType, url: &str, body: Option<serde_json::Value>) -> Result<String, FetchError> {
     let client = Client::new();
     let response = match fetch_type {
         FetchType::GET => client.get(url),
@@ -38,7 +38,14 @@ pub async fn fetch_data(fetch_type: FetchType, url: &str, body: Option<serde_jso
     } else {
         response
     }.send().await?;
-    
-    let text = response.text().await?;
-    Ok(text)
+
+    match response.status().as_u16() {
+        200 => Ok(response.text().await?),
+        201 => Ok(response.text().await?),
+        // 400 => Err(FetchError::BadRequest),
+        // 401 => Err(FetchError::Unauthorized),
+        // 403 => Err(FetchError::Forbidden),
+        404 => Err(FetchError::NoData),
+        _ => Err(FetchError::UnexpectedStatus),
+    }
 }

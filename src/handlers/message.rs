@@ -12,7 +12,7 @@ pub async fn handle_message(_ctx: Context, msg: Message) {
         // Call application command handler
         let builder = CreateChannel::new("test")
             .kind(ChannelType::Text);
-        let _channel = GuildId::new(u64::from(guild_id)).create_channel(&_ctx.http, builder).await;
+        let _channel = GuildId::new(u64::from(guild_id)).create_channel(_ctx.http, builder).await;
     } else if msg.content.starts_with("!permission") {
         println!("Permission command");
         // Call permission command handler
