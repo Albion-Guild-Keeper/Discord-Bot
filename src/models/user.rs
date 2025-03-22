@@ -5,6 +5,7 @@ pub struct User {
     pub id: i64,
     pub username: String,
     pub discord_id: i64,
-    pub server_name: String,
+    pub global_name: String,
     pub joined_at: String,
+    pub avatar: Option<String>,
 }

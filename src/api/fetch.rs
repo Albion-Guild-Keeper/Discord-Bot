@@ -49,3 +49,9 @@ pub async fn fetch_data(fetch_type: FetchType, url: &str, body: Option<serde_jso
         _ => Err(FetchError::UnexpectedStatus),
     }
 }
+
+// @todo migliorare ErroHandling
+// @todo trasformare in un builder o crearli entrambi
+// @todo aggiungere altre funzionalità
+// @todo aggiungere test
+// @todo aggiungere documentazione 
