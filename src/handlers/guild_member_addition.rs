@@ -20,7 +20,7 @@ pub async fn handle_guild_member_add(_ctx: Context, new_member: Member) {
     };
 
     // Construct the URL
-    let url = format!("http://127.0.0.1:8000/api/v1/user/@me");
+    let url = format!("https://rust-guild-api-kvdl.shuttle.app:8000/api/v1/user/@me");
     let body = Some(json!({
         "id": user_data.id,
         "joined_at": user_data.joined_at,
