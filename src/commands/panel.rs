@@ -6,29 +6,29 @@ use serenity::builder::CreateCommand;
 use serenity::builder::CreateEmbed;
 use serenity::model::application::ResolvedOption;
 
-use crate::api::errors::FetchError::NoData;
-use crate::api::fetch::FetchType::GET;
-use crate::api::fetch_data;
 
 pub async fn run(_options: &[ResolvedOption<'_>]) -> CreateInteractionResponseMessage {
-    let url = "http://localhost:8000/api/v1/accounts/123";
-    let res = fetch_data(GET, url, None).await;
+    // let url = "http://localhost:8000/api/v1/accounts/123";
+    // let res = fetch_data(GET, url, None).await;
 
-    println!("{:?}", res);
+    // println!("{:?}", res);
 
-    match res {
-        Ok(_) => {
-            return linked();
-        }
-        Err(NoData) => {
-            return not_linked();
-        }
-        Err(_) => {
-            return CreateInteractionResponseMessage::new()
-                .content("An error occurred while fetching data.")
-                .ephemeral(true);
-        }
-    }
+    // match res {
+    //     Ok(_) => {
+    //         return linked();
+    //     }
+    //     Err(NoData) => {
+    //         return not_linked();
+    //     }
+    //     Err(_) => {
+    //         return CreateInteractionResponseMessage::new()
+    //             .content("An error occurred while fetching data.")
+    //             .ephemeral(true);
+    //     }
+    // }
+    CreateInteractionResponseMessage::new()
+        .content("Panel")
+        .ephemeral(true)
 }
 
 pub fn register() -> CreateCommand {

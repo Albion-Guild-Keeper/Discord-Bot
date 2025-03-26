@@ -1,5 +1,3 @@
-use crate::api::fetch::FetchType;
-use crate::api::fetch_data;
 use crate::models::user::User;
 use serde_json::json;
 use serenity::model::prelude::Member;
@@ -20,20 +18,24 @@ pub async fn handle_guild_member_add(_ctx: Context, new_member: Member) {
     };
 
     // Construct the URL
-    let url = format!("https://rust-guild-api-kvdl.shuttle.app:8000/api/v1/user/@me");
-    let body = Some(json!({
-        "id": user_data.id,
-        "joined_at": user_data.joined_at,
-        "username": user_data.username,
-        "global_name": user_data.global_name,
-        "discord_id": user_data.discord_id,
-        "avatar": user_data.avatar
-    }));
+    // let url = format!("https://localhost:8000/api/v1/user/@me");
+    // let body = Some(json!({
+    //     "id": user_data.id,
+    //     "joined_at": user_data.joined_at,
+    //     "username": user_data.username,
+    //     "global_name": user_data.global_name,
+    //     "discord_id": user_data.discord_id,
+    //     "avatar": user_data.avatar
+    // }));
 
-    let result = fetch_data(FetchType::PUT, &url, body).await;
+    // let result = fetch_data(FetchType::PUT, &url, body).await;
+
+    let err = "no err";
+    let response_text = "no response text";
+    let result: Result<String, String> = Ok("test".to_owned()); // Changed to Some(true) to match Option type
 
     match result {
-        Ok(response_text) => {
+        Ok(response) => {
             println!("API call successful. Response: {}", response_text);
         },
         Err(err) => {
